@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+
+require_relative "../lib/nachi"
+
+options = { concurrency: Nachi::Runner::MAX_CONCURRENCY }
+OptionParser.new do |opts|
+  opts.banner = "Usage: nachi-scraper [options]"
+
+  opts.on("-t", "--threads THREADS", "# of threads to spin up") do |t|
+    options[:concurrency] = t.to_i
+  end
+end.parse!
+
+lines = ARGF.readlines.reject { |line| line =~ /\A\s*\z/ }.map!(&:chomp)
+runner = Nachi::Runner.new do |config|
+           config.max_concurrency = options[:concurrency]
+         end
+csv = runner.execute(lines)
+$stdout << "#{csv}\n"
