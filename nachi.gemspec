@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Nachi::VERSION
   spec.authors       = ["Cristian Rasch"]
   spec.email         = ["cristianrasch@fastmail.fm"]
-  spec.summary       = %q{http://nachi-tool.jp/bearing product mass scraper}
+  spec.summary       = %q{http://nachi-tool.jp/bearing product scraper}
   spec.homepage      = "https://github.com/wecodeio/nachi_scraper"
   spec.license       = "MIT"
 
@@ -19,8 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "capybara"
   spec.add_runtime_dependency "capybara-webkit"
-  # spec.add_runtime_dependency "selenium-webdriver"
 
-  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake"
 end

@@ -8,7 +8,7 @@ module Nachi
 
     def self.mass_of(part_number)
       session = Capybara::Session.new(:webkit)
-      # session = Capybara::Session.new(:selenium)
+      session.driver.allow_url("nachi-tool.jp/*")
       session.visit("http://nachi-tool.jp/bearing/")
       session.within('form[name="frmSearch"]') do
         session.fill_in("search_keywords", with: part_number)
@@ -22,7 +22,6 @@ module Nachi
       end
 
       html = session.html
-      # session.driver.browser.close
       doc = Nokogiri::HTML(html)
 
       md = nil
